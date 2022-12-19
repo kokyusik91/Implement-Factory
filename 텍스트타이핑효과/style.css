@@ -1,6 +1,19 @@
-.text {
-  display: inline;
-  vertical-align: middle;
-  border-right: 0.05em solid black;
-  animation: cursor 0.2s ease infinite;
+.text::after {
+  content: '';
+  margin-left: 0.4rem;
+  border-right: 2px solid #777;
+  animation: cursor 0.5s infinite steps(2);
+}
+
+@keyframes cursor {
+  from {
+    border-right: 2px solid #fff;
+  }
+  to {
+    border-right: 2px solid #000000;
+  }
+}
+
+.container {
+  display: flex;
 }
