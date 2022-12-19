@@ -1,3 +1,6 @@
-h1 {
-  color: green;
+.text {
+  display: inline;
+  vertical-align: middle;
+  border-right: 0.05em solid black;
+  animation: cursor 0.2s ease infinite;
 }
