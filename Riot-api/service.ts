@@ -1,3 +1,9 @@
+type FreeLotationChamp = {
+  freeChampionIds: number[]
+  freeChampionIdsForNewPlayers: number[]
+  maxNewPlayerLevel: number
+}
+
 class LeagueService {
   constructor(
     private BASE_URL: string,
