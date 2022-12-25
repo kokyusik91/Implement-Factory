@@ -7,7 +7,7 @@ export type Champion = {
   name: string
   partype: string
   stats: ChampionStat
-  tags: string[]
+  tags: ChampionType[]
   title: string
   version: string
 }
@@ -51,3 +51,11 @@ type ChampionStat = {
   spellblock: number
   spellblockperlevel: number
 }
+
+export type ChampionType =
+  | 'Assassin'
+  | 'Fighter'
+  | 'Mage'
+  | 'Marksman'
+  | 'Support'
+  | 'Tank'

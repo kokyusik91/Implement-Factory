@@ -40,12 +40,27 @@ class LeagueService {
 
   async getAllChampion(verson: string) {
     return fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${verson}/data/ko_KR/champion.json`,
+      `http://ddragon.leagueoflegends.com/cdn/${verson}/data/ko_KR/champion.json`,
     ).then((res) => {
       if (res.ok) return res.json()
       else throw new Error('네트워크에 뭐 문제가 있는듯')
     })
   }
+
+  async getChampionByName(verson: string, championName: string) {
+    return fetch(
+      `http://ddragon.leagueoflegends.com/cdn/${verson}/data/ko_KR/champion/${championName}.json`,
+    ).then((res) => {
+      if (res.ok) return res.json()
+      else throw new Error('네트워크에 문제가 있는 듯')
+    })
+  }
 }
 
 export default LeagueService
+
+// https://ddragon.leagueoflegends.com/cdn/12.23.1/img/passive/Icons_KSante_P.png 스킬 패시브 이미지
+// https://ddragon.leagueoflegends.com/cdn/12.23.1/img/spell/CaitlynQ.png 스킬 스플래쉬 이미지
+
+// https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_29.jpg 챔피언 이미지
+// https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KSante_0.jpg
