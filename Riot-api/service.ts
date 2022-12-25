@@ -64,3 +64,4 @@ export default LeagueService
 
 // https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_29.jpg 챔피언 이미지
 // https://ddragon.leagueoflegends.com/cdn/img/champion/splash/KSante_0.jpg
+//http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg 로딩 이미지
