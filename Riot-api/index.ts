@@ -1,18 +1,7 @@
 import { api } from './constants.js'
 import { Champion, ChampionType } from './types.js'
 import LeagueService from './service.js'
-
-const TypeToTitle = (type: ChampionType) => {
-  const classType = {
-    Assassin: '암살자',
-    Fighter: '전사',
-    Mage: '마법사',
-    Marksman: '원거리 딜러',
-    Support: '서포터',
-    Tank: '탱커',
-  }
-  return classType[type]
-}
+import { TypeToTitle, checkDifficulty, difficultyTemplate } from './utilis.js'
 
 // 로케이션 정보 챔피언 뽑아내기
 
@@ -20,7 +9,7 @@ async function app() {
   let lolVersion = ''
   let totalChampion: any = {}
   let freeChampionIdList: number[] = []
-  let champion = {}
+  let specificChamp: null = null
 
   const leagueService = new LeagueService(
     api.BASE_URL,
@@ -68,11 +57,12 @@ async function app() {
     })
   }
 
-  const makeTemplate = (array: Champion[]) => {
-    const templateArray = array.map(
+  const makeTemplate = (array?: Champion[]) => {
+    const templateArray = array?.map(
       (champion) =>
         `  
-      <li class="card">
+      <li data-id=${champion.id} class="card">
+        <div class='card-side card-front'>
         <div class="card_image">
           <img
             class="image"
@@ -98,22 +88,65 @@ async function app() {
             <p class='role_image_desc'>${TypeToTitle(champion.tags[0])}</p>
           </div>
           <div class='card_info_list'>
-            <div class='difficulty_container'></div>
+            <div class='difficulty_container'>
+              ${difficultyTemplate(checkDifficulty(champion.info.difficulty))}
+            </div>
             <h3 class='title'>난이도</h3>
-            <p class='difficulty_desc'>${champion.info.difficulty}</p>
+            <p class='difficulty_desc'>${checkDifficulty(
+              champion.info.difficulty,
+            )}</p>
+          </div>
+           </div>
           </div>
         </div>
+        <div class='card-side card-back'>
+          <h1>헬로우!</h1>
         </div>
       </li>`,
     )
-    return templateArray.join('')
+    return templateArray?.join('')
   }
 
   const template = makeTemplate(array)
-  console.log(template)
 
   const ulElement = document.querySelector('.champion')! as HTMLUListElement
-  ulElement.insertAdjacentHTML('beforeend', template)
+  ulElement.insertAdjacentHTML('beforeend', template || '')
+
+  const handleClickCard = async (e: any) => {
+    const card = e.target as HTMLLIElement
+    const id = card.dataset.id
+
+    if (id) {
+      try {
+        const response = await leagueService.getChampionByName(lolVersion, id)
+        const item = response.data
+        specificChamp = item[id]
+      } catch (err) {
+        console.log(err as Error)
+      } finally {
+      }
+    }
+    const bg = document.querySelector('.card-back')! as HTMLDivElement
+
+    // bg.style.backgroundColor = 'red'
+    bg.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg')`
+    card.classList.toggle('rotate')
+  }
+
+  const bg = document.querySelector('.card-back')! as HTMLDivElement
+  console.log(bg)
+  const title = document.createElement('h1')! as HTMLHeadingElement
+  title.textContent = '미친년아!'
+  console.log(title)
+  bg.appendChild(title)
+
+  const ulTag = document.querySelector('.champion')! as HTMLUListElement
+  ulTag.addEventListener('click', handleClickCard)
+
+  const h1Tag = document.querySelector('.main_title')! as HTMLHeadingElement
+  h1Tag.addEventListener('click', () => {
+    console.log(specificChamp)
+  })
 }
 
 app()
