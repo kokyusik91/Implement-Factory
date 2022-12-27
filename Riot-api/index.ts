@@ -136,7 +136,7 @@ async function app() {
   const bg = document.querySelector('.card-back')! as HTMLDivElement
   console.log(bg)
   const title = document.createElement('h1')! as HTMLHeadingElement
-  title.textContent = '미친년아!'
+  title.textContent = '디자인'
   console.log(title)
   bg.appendChild(title)
 
