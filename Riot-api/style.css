@@ -71,13 +71,29 @@ body {
 }
 
 .card-back {
-  /* background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg');
+  position: relative;
+  transform: rotateY(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+}
+
+.card-back::before {
+  content: '';
   opacity: 0.2;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; */
-  transform: rotateY(180deg);
+  background-size: cover;
+  position: absolute;
+
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.25;
 }
+
 .card.rotate {
   transform: rotateY(180deg);
 }
