@@ -100,7 +100,6 @@ async function app() {
           </div>
         </div>
         <div class='card-side card-back'>
-          <h1>헬로우!</h1>
         </div>
       </li>`,
     )
@@ -115,30 +114,32 @@ async function app() {
   const handleClickCard = async (e: any) => {
     const card = e.target as HTMLLIElement
     const id = card.dataset.id
+    let response
 
     if (id) {
       try {
-        const response = await leagueService.getChampionByName(lolVersion, id)
-        const item = response.data
-        specificChamp = item[id]
+        response = await leagueService.getChampionByName(lolVersion, id)
+        const item = response.data[id]
+        console.log(item)
+        const bg = card.querySelector('.card-back')! as HTMLDivElement
+        bg.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${item.id}_0.jpg')`
+
+        const template = `
+          <h1 class='lore'>${item.name}</h1>
+        `
+
+        const lore = card.querySelector('.lore')
+        if (!lore?.hasChildNodes()) {
+          bg.insertAdjacentHTML('beforeend', template)
+        }
       } catch (err) {
         console.log(err as Error)
       } finally {
       }
     }
-    const bg = document.querySelector('.card-back')! as HTMLDivElement
 
-    // bg.style.backgroundColor = 'red'
-    bg.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg')`
     card.classList.toggle('rotate')
   }
-
-  const bg = document.querySelector('.card-back')! as HTMLDivElement
-  console.log(bg)
-  const title = document.createElement('h1')! as HTMLHeadingElement
-  title.textContent = '디자인'
-  console.log(title)
-  bg.appendChild(title)
 
   const ulTag = document.querySelector('.champion')! as HTMLUListElement
   ulTag.addEventListener('click', handleClickCard)
