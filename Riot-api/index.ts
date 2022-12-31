@@ -125,11 +125,7 @@ async function app() {
         bg.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${item.id}_0.jpg')`
 
         const template = `
-<<<<<<< HEAD
           <h1 class='lore'>${item.name}</h1>
-=======
-          <p class='lore'>${item.name}</p>
->>>>>>> e5d02637e291087d9d9f167d82eba4583d4256fb
         `
 
         const lore = card.querySelector('.lore')
