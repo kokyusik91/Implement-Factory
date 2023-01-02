@@ -110,7 +110,7 @@ async function app() {
 
   const ulElement = document.querySelector('.champion')! as HTMLUListElement
   ulElement.insertAdjacentHTML('beforeend', template || '')
-
+  // 카드 클릭했을때 핸들러 함수.
   const handleClickCard = async (e: any) => {
     const card = e.target as HTMLLIElement
     const id = card.dataset.id
@@ -125,7 +125,7 @@ async function app() {
         bg.style.backgroundImage = `url('http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${item.id}_0.jpg')`
 
         const template = `
-          <p class='lore'>${item.name}</p>
+          <h1 class='lore'>${item.name}</h1>
         `
 
         const lore = card.querySelector('.lore')
