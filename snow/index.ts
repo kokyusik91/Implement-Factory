@@ -20,7 +20,9 @@ function makeSnowFlake() {
     makeSnowFlake()
   }, (duration + delay) * 1000)
 }
-
+/**
+ * 눈을 무한으로 반복하기 위해섬
+ */
 for (let i = 0; i < 50; i++) {
   setTimeout(makeSnowFlake, 500 * i)
 }
