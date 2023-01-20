@@ -1,6 +1,7 @@
 const body = document.querySelector('body')
 const MIN_DURATION = 10
 
+// 눈 내기 위한 함수
 function makeSnowFlake() {
   const snowflake = document.createElement('div')
   const delay = Math.random() * 10
