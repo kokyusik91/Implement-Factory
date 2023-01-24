@@ -27,32 +27,6 @@ export class Keyboard {
     document.addEventListener("mouseup", this.#onMouseUp.bind(this));
   }
 
-  #onMouseDown(event) {
-    if (this.#keyPress) return;
-    this.#mouseDown = true;
-    event.target.closest("div.key")?.classList.add("active");
-  }
-  // mouse땔때 .active가 있으면 그 class를 제거
-  #onMouseUp(event) {
-    if (this.#keyPress) return;
-    this.#mouseDown = false;
-    // input이 입력되도록
-    const keyEl = event.target.closest("div.key");
-    const val = keyEl?.dataset.val;
-    const isActive = !!keyEl?.classList.contains("active");
-    // 일반 key인 경우
-    if (isActive && !!val && val !== "Space" && val !== "Backspace") {
-      this.#inputEl.value += val;
-    }
-    if (isActive && val === "Space") {
-      this.#inputEl.value += " ";
-    }
-    if (isActive && val === "Backspace") {
-      this.#inputEl.value = this.#inputEl.value.slice(0, -1);
-    }
-    this.#keyboardEl.querySelector(".active")?.classList.remove("active");
-  }
-
   #addEvent() {
     this.#switchEl.addEventListener("change", this.#onChangeTheme);
 
@@ -105,5 +79,31 @@ export class Keyboard {
       /[ㄱ-ㅎ | ㅏ-ㅣ | 가-힣]/,
       ""
     );
+  }
+
+  #onMouseDown(event) {
+    if (this.#keyPress) return;
+    this.#mouseDown = true;
+    event.target.closest("div.key")?.classList.add("active");
+  }
+  // mouse땔때 .active가 있으면 그 class를 제거
+  #onMouseUp(event) {
+    if (this.#keyPress) return;
+    this.#mouseDown = false;
+    // input이 입력되도록
+    const keyEl = event.target.closest("div.key");
+    const val = keyEl?.dataset.val;
+    const isActive = !!keyEl?.classList.contains("active");
+    // 일반 key인 경우
+    if (isActive && !!val && val !== "Space" && val !== "Backspace") {
+      this.#inputEl.value += val;
+    }
+    if (isActive && val === "Space") {
+      this.#inputEl.value += " ";
+    }
+    if (isActive && val === "Backspace") {
+      this.#inputEl.value = this.#inputEl.value.slice(0, -1);
+    }
+    this.#keyboardEl.querySelector(".active")?.classList.remove("active");
   }
 }
