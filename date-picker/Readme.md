@@ -34,7 +34,6 @@ webpack보다 조금 더 단순한다. 추가로 Sass를 css로 컴파일 해주
 
 ```js
  constructor() {
-    console.log('컨스트럭터', this.#calendarDate)
     this.initCalendarDate()
     this.initSelectedDate()
     this.#assignElement()
