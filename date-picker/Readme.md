@@ -28,7 +28,7 @@ webpack보다 조금 더 단순한다. 추가로 Sass를 css로 컴파일 해주
 
 <br>
 
-### 구현 내용 및 주요 메서드
+### 구현 내용 및 주요 메서드,
 
 1. Constructor
 
@@ -45,3 +45,5 @@ webpack보다 조금 더 단순한다. 추가로 Sass를 css로 컴파일 해주
 2. `assignElement()` : 돔 요소 선택 후 할당
 
 3. `moveToNextMonth()` : 다음달로 이동 관련 메서드
+
+4. `setDateInput()` : 데이터 Input
