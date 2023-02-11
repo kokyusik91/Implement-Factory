@@ -6,6 +6,7 @@
 
 - snowpack : webpack처럼 build를 할 수 있고, devServer 지원하여 개발가능
 - Sass : css에서 지원하지 않는 문법을 사용할 수 있고, css보다 조금 더 전략적으로 스타일을 작성 할 수 있음
+- JS
 
 <br>
 
