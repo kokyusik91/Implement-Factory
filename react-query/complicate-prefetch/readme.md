@@ -25,7 +25,9 @@ prefetch할 hook을 미리 선언해놓는다. `useQueryClient` 를 import 해�
 이제 Home 컴포넌트에서 이 prefetch Hook을 불러온다.
 
 ```jsx
-export function Home(): ReactElement {
+export function Home():
+
+ReactElement {
   usePrefetchTreatments();
 
   return (
