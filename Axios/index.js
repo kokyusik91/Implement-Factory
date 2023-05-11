@@ -1,11 +1,14 @@
 import Axios from 'axios'
 
-const axios = Axios.create({})
+const axios = Axios.create({
+  headers: { 'content-Type': 'application/json' },
+})
 
 // Request에 인터셉터 추가
 axios.interceptors.request.use(
   (config) => {
     console.log('Request: OnFulfilled')
+    console.log('config', config)
     return config
   },
   (error) => {
@@ -25,7 +28,7 @@ axios.interceptors.response.use(
 )
 
 axios
-  .get('https://randomuser.me/api/notFound')
+  .get('https://randomuser.me/api')
   .then((response) => {
     console.log('GET: Data')
     return response
